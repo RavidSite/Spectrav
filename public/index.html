@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Special Ravid Cyber Security Group - Ethical hacking, cybersecurity services." />
+<meta name="keywords" content="Cybersecurity, Ethical Hacking, Consulting, Network Security" />
+<meta name="author" content="Special Ravid" />
+<title>Special Ravid Cyber Security Group</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+
+  /* Reset & Basics */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0; min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background: url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e428440c-af9a-4d89-b881-83badcdf00b1.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  /* Dark mode body */
+  body.dark {
+    background-color: #121212;
+    background-image: none;
+    color: #ddd;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.85);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  /* Social Icons */
+  .social-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+  }
+  .social-icons a {
+    color: #fff;
+    transition: color 0.4s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  .social-icons a:hover {
+    color: #e03e3e;
+    transform: scale(1.2);
+  }
+
+  nav {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    gap: 30px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  nav a:hover, nav a.active {
+    background-color: #e03e3e;
+    color: white;
+  }
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0.9);
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.8);
+    top: 45px;
+    left: 0;
+    z-index: 1000;
+  }
+  .dropdown-content a {
+    padding: 12px 18px;
+    display: block;
+    font-weight: 500;
+    color: #fff;
+  }
+  .dropdown-content a:hover {
+    background-color: #b72a2a;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .title-container {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    color: #e03e3e;
+    text-shadow: 0 0 20px #e03e3e;
+    text-align: center;
+    margin: 70px 20px 40px 20px;
+  }
+
+  main {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  /* Login Form */
+  .login-form {
+    background: rgba(0,0,0,0.7);
+    padding: 30px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 0 25px #e03e3e;
+  }
+  .login-form h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+  }
+  .login-form button {
+    width: 100%;
+    background-color: #e03e3e;
+    border: none;
+    padding: 14px 0;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    color: #fff;
+  }
+  .login-form button:hover {
+    background-color: #b72a2a;
+  }
+
+  /* About Section */
+  #about-info {
+    max-width: 420px;
+    background: rgba(0,0,0,0.75);
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 18px #e03e3e;
+    color: #ddd;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+  }
+  #about-info.show {
+    max-height: 400px;
+  }
+
+  /* Dark/Light toggle button */
+  .dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #222;
+    border: none;
+    color: #e03e3e;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    transition: background-color 0.3s;
+    z-index: 10000;
+  }
+  .dark-toggle:hover {
+    background-color: #e03e3e;
+    color: #222;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px){
+    nav {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0,0,0,0.9);
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 180px;
+      padding: 10px;
+      border-radius: 0 0 0 10px;
+      z-index: 9999;
+    }
+    nav.active {
+      display: flex;
+    }
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 28px;
+      color: #e03e3e;
+      background: none;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+    }
+    header {
+      justify-content: space-between;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook" title="Facebook">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M22,12A10,10 0 1,0 2,12A10,10 0 0,0 22,12M15,12V18H12V12H10V9H12V7.5C12,6.672 12.672,6 13.5,6H15V9H13.5V12H15Z" /></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram" title="Instagram">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M7.75,2H16.25C19.474,2,22,4.526,22,7.75V16.25C22,19.474,19.474,22,16.25,22H7.75C4.526,22,2,19.474,2,16.25V7.75C2,4.526,4.526,2,7.75,2M12,7.44A4.56,4.56 0 0,0 7.44,12A4.56,4.56 0 0,0 12,16.56A4.56,4.56 0 0,0 16.56,12A4.56,4.56 0 0,0 12,7.44M18.5,6.5H17.999L17.75,6.51A0.5,0.5 0 0,0 18,6.75V6.5Z" /></svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter" title="Twitter">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M22,4.01C21.24,4.46 20.42,4.75 19.56,4.92C20.43,4.38 21.09,3.46 21.39,2.33C20.58,2.82 19.7,3.18 18.77,3.39C18.03,2.57 16.95,2 15.75,2C13.44,2 11.56,3.88 11.56,6.19C11.56,6.62 11.6,7.03 11.68,7.43C8.05,7.27 4.85,5.63 2.82,3.2C2.35,3.89 2.07,4.72 2.07,5.62C2.07,7.11 3,8.41 4.41,8.99C3.74,9 3.13,8.8 2.6,8.46V8.52C2.6,10.59 4.12,12.31 6.13,12.71C5.74,12.82 5.32,12.88 4.88,12.88C4.57,12.88 4.27,12.85 3.99,12.79C4.58,14.47 6.1,15.73 7.94,15.77C6.51,16.94 4.72,17.65 2.79,17.65C2.45,17.65 2.12,17.62 1.79,17.56C3.64,18.79 5.82,19.5 8.21,19.5C15.74,19.5 20.48,13.25 20.48,7.22C20.48,7.05 20.48,6.88 20.47,6.71C21.28,6.14 22,5.45 22,4.01Z" /></svg>
+    </a>
+  </div>
+
+  <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+
+  <nav>
+    <a href="#" class="active">Home</a>
+    <div class="dropdown">
+      <a href="#">About</a>
+      <div class="dropdown-content">
+        <a href="#" id="about-link">About Me</a>
+        <a href="#">Our Team</a>
+        <a href="#">Mission</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#">Services</a>
+      <div class="dropdown-content">
+        <a href="#">Web Security</a>
+        <a href="#">Sys Admin</a>
+        <a href="#">Consulting</a>
+      </div>
+    </div>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<div class="title-container">
+  We are Special Ravid Cyber Security Group
+</div>
+
+<!-- About Section -->
+<div id="about-info" aria-live="polite" aria-atomic="true">
+  <strong>About Me:</strong>
+  <p>
+    I am a passionate ethical hacker and cybersecurity enthusiast. My focus is on understanding how systems work, identifying vulnerabilities, and helping to make technology safer. I enjoy experimenting with coding, networking, and penetration testing in legal environments. My goal is to continuously learn, challenge myself, and contribute positively to the security community.
+  </p>
+</div>
+
+<main>
+  <!-- Login form -->
+  <form class="login-form" action="/receive-login" method="POST" novalidate>
+    <h2>Login</h2>
+    <label for="username" >Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required placeholder="Enter username" />
+    <label for="password" >Password</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="Enter password" />
+    <button type="submit">Log In</button>
+  </form>
+</main>
+
+<button class="dark-toggle" aria-label="Toggle dark mode">Dark Mode</button>
+
+<script>
+  // Toggle About section
+  document.getElementById('about-link').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('about-info').classList.toggle('show');
+  });
+
+  // Responsive menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+
+  // Dark/light mode toggle with localStorage
+  const darkToggle = document.querySelector('.dark-toggle');
+  const body = document.body;
+  function setTheme(theme) {
+    if(theme === 'dark') {
+      body.classList.add('dark');
+      darkToggle.textContent = 'Light Mode';
+    } else {
+      body.classList.remove('dark');
+      darkToggle.textContent = 'Dark Mode';
+    }
+  }
+  // Load preference
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+
+  darkToggle.addEventListener('click', () => {
+    if(body.classList.contains('dark')) {
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+</script>
+
+</body>
+</html>
+
