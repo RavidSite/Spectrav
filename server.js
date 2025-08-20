@@ -22,7 +22,7 @@ app.post("/receive-login", (req, res) => {
 });
 
 // Server işə düşür (Railway üçün PORT)
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server ${PORT} portunda işləyir`);
 });
