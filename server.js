@@ -1,15 +1,18 @@
-const express = require("express");
-const app = express();
+import express from "express";
+import path from "path";
 
+const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Sadə test routu
+// Public qovluğunu açıq edirik
+app.use(express.static("public"));
+
+// Əsas route index.html-i göstərir
 app.get("/", (req, res) => {
-  res.send("Server işləyir 🚀");
+  res.sendFile(path.join(process.cwd(), "public", "index.html"));
 });
 
-// Render üçün mütləq 0.0.0.0-da dinləməlisən
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server ${PORT} portunda işə düşdü`);
+app.listen(PORT, () => {
+  console.log(`Server işləyir: http://localhost:${PORT}`);
 });
 
