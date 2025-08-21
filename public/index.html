@@ -151,60 +151,6 @@
     box-shadow: 0 0 12px #e03e3e;
   }
 
-  /* Chat stilleri */
-  #chat-container {
-    display:flex;
-    flex-direction: column;
-    height: 420px;
-    background: rgba(0,0,0,0.85);
-    border-radius: 12px;
-    box-shadow: 0 0 25px #e03e3e;
-    padding: 10px;
-    max-width: 400px;
-  }
-  #chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    border: 1px solid #444;
-    padding: 10px;
-    background: #121212;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #ddd;
-  }
-  .chat-message {
-    margin: 8px 0;
-    max-width: 80%;
-    padding: 8px 12px;
-    border-radius: 15px;
-    word-wrap: break-word;
-    clear: both;
-  }
-  .chat-message.user {
-    background: #e03e3e;
-    color: #fff;
-    float: right;
-    border-bottom-right-radius: 0;
-  }
-  .chat-message.bot {
-    background: #444;
-    float: left;
-    border-bottom-left-radius: 0;
-  }
-  #chat-input {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    background: #222;
-    color: #eee;
-  }
-  #chat-input::placeholder {
-    color: #777;
-  }
-
   /* Dark/Light toggle button */
   .dark-toggle {
     position: fixed;
@@ -230,10 +176,6 @@
   @media (max-width: 768px) {
     main {
       padding: 15px 20px;
-    }
-    #chat-container {
-      max-width: 100%;
-      height: 350px;
     }
   }
 </style>
@@ -288,7 +230,7 @@
   <section id="contact" class="content-section">
     <h2 class="section-title">Bizimlə Əlaqə</h2>
     <p>
-      Sual və təkliflər üçün bizimlə <a href="mailto:contact@spectrav95.com" style="color:#e03e3e;">contact@spectrav95.com</a> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz.
+      Sual və təkliflər üçün bizimlə <a href="mailto:contact@specialravid.com" style="color:#e03e3e;">contact@specialravid.com</a> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz.
     </p>
   </section>
 
@@ -300,11 +242,9 @@
   </section>
 
   <section id="chat" class="content-section">
+    <!-- Saxta chat silindi -->
     <h2 class="section-title">Bizimlə Söhbət</h2>
-    <div id="chat-container">
-      <div id="chat-messages" aria-live="polite" aria-atomic="false"></div>
-      <input id="chat-input" type="text" placeholder="Mesaj yaz və Enter bas" autocomplete="off" aria-label="Chat girişi" />
-    </div>
+    <p>Sağ alt küncdə real-time canlı operator chat pəncərəsini görəcəksiniz.</p>
   </section>
 </main>
 
@@ -313,12 +253,10 @@
 <script>
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.content-section');
-  const chatMessages = document.getElementById('chat-messages');
-  const chatInput = document.getElementById('chat-input');
   const darkToggle = document.querySelector('.dark-toggle');
   const body = document.body;
 
-  // Menü seçimi, içerik göster/gizle
+  // Menü seçimi, içerik göstər/gizlə
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -347,54 +285,19 @@
     const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
     setTheme(newTheme);
   });
+</script>
 
-  // Ses efekti
-  const chatSound = new Audio();
-  chatSound.src = 'https://www.myinstants.com/media/sounds/pling.mp3'; // Basit bildirim sesi, değiştirebilirsin
-
-  // Geniş açar sözler ve cavablar (Azerbaycan türkçesi)
-  const autoReplies = [
-    { keywords: ['salam', 'səlam', 'salamlar', 'salam aleyküm'], reply: "Salam! Necə kömək edə bilərəm sizə?" },
-    { keywords: ['yaxşı', 'çox sağol', 'təşəkkür'], reply: "Çox sağ olun! Başqa sualınız varsa, buyurun." },
-    { keywords: ['xidmətlər', 'təklif', 'təkliflər'], reply: "Biz penetrasiya testləri, zəiflik qiymətləndirməsi, təhlükəsizlik məsləhətçiliyi və daha çox xidmətlər təqdim edirik." },
-    { keywords: ['qiymət', 'ölçü', 'xərci'], reply: "Xidmətlərimizin qiyməti layihənin həcminə görə dəyişir. Ətraflı məlumat üçün bizimlə əlaqə saxlayın." },
-    { keywords: ['kömək', 'yardım', 'problemlər'], reply: "Əlbəttə, hansı məsələdə kömək lazımdır? Mən sizin üçün burağam." },
-    { keywords: ['hacker', 'kiber', 'kiberhücüm'], reply: "Kiberhücumlar barədə məlumat və qorunma yolları haqqında geniş məsləhətlər verə bilərəm." },
-    { keywords: ['video', 'videolar'], reply: "Videolar bölməsindən ən son hacker mövzularında videoları izləyə bilərsiniz." },
-    { keywords: ['əlvida', 'görüşərik'], reply: "Sağ olun! Yenidən görüşənədək." },
-    { keywords: ['sual'], reply: "Buyurun, sualınızı verin, cavablandırmağa çalışacam." },
-    { keywords: [''], reply: "Bağışlayın, mesajınızı tam anlamadım. Zəhmət olmasa bir daha yazın." }
-  ];
-
-  // Mesaj əlavə etmə funksiyası
-  function addMessage(text, sender) {
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('chat-message', sender);
-    msgDiv.textContent = text;
-    chatMessages.appendChild(msgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    chatSound.play();
-  }
-
-  // Mesaj analiz ve cevaplama
-  chatInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter' && chatInput.value.trim() !== '') {
-      const userMsg = chatInput.value.trim();
-      addMessage(userMsg, 'user');
-      chatInput.value = '';
-
-      const msgLower = userMsg.toLowerCase();
-      let foundReply = autoReplies.find(item =>
-        item.keywords.some(keyword => msgLower.includes(keyword))
-      );
-      let replyText = foundReply ? foundReply.reply : "Bağışlayın, dediyinizi başa düşmədim, zəhmət olmasa başqa cür ifadə edin.";
-
-      setTimeout(() => {
-        addMessage(replyText, 'bot');
-      }, 800 + Math.random() * 1200);
-    }
-  });
-
+<!-- Tawk.to Canlı Chat Script -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68a6f9ec371fc8192c765662/1j3640hna';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
 
 </body>
