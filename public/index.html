@@ -3,62 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Special Ravid Cyber Security Group</title>
+  <title>Special Ravid Cyber Security Group - Azerbaycanca Chat</title>
   <style>
-    body {
-      background-color: #0f0f0f;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+    body, html {
+      margin: 0; padding: 0; min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background: url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e428440c-af9a-4d89-b881-83badcdf00b1.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex; flex-direction: column;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    body.dark {
+      background-color: #121212;
+      background-image: none;
+      color: #ddd;
     }
     header {
       display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      padding: 15px 20px;
-      background-color: #111;
-      box-shadow: 0 0 10px #00ff00;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.85);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
-    button.auth-btn {
-      padding: 8px 16px;
-      font-size: 14px;
-      font-weight: bold;
+    nav {
+      display: flex;
+      gap: 25px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
       cursor: pointer;
-      color: #000;
-      background-color: #00ff00;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav a.active, nav a:hover {
+      background-color: #e03e3e;
+      color: #fff;
+    }
+    .social-icons {
+      display: flex;
+      gap: 18px;
+      font-size: 22px;
+    }
+    .social-icons a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.4s ease, transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #e03e3e;
+      transform: scale(1.2);
+    }
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .auth-buttons button {
+      padding: 8px 16px;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
       border: none;
-      border-radius: 3px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e03e3e;
+      color: #fff;
       transition: background-color 0.3s ease;
     }
-    button.auth-btn:hover {
-      background-color: #66ff66;
+    .auth-buttons button:hover {
+      background-color: #ff5555;
     }
     .title-container {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: #e03e3e;
+      text-shadow: 0 0 15px #e03e3e;
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 30px 15px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      margin: 40px 20px 30px 20px;
     }
     main {
       flex-grow: 1;
-      padding: 15px;
+      padding: 20px 40px;
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+    }
+    .content-section {
+      display: none;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 20px #e03e3e;
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+    .content-section.active {
+      display: block;
+      opacity: 1;
+    }
+    @keyframes fadeInUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    h2.section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #e03e3e;
+      border-bottom: 2px solid #e03e3e;
+      padding-bottom: 8px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ddd;
+    }
+    ul.services-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    ul.services-list li {
+      background: #b72a2a;
+      margin: 8px 0;
+      padding: 12px 15px;
+      border-radius: 8px;
+      box-shadow: 1px 1px 5px #600000 inset;
+    }
+    img.section-image {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #e03e3e;
+      margin-top: 20px;
+    }
+    #videos iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #e03e3e;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        padding: 15px 20px;
+      }
+      #videos iframe {
+        max-width: 100%;
+        height: 220px;
+      }
     }
 
-    /* Modal arxa plan */
+    /* Modal styles */
     .modal-overlay {
       position: fixed;
-      top: 0; left:0; right:0; bottom:0;
-      background: rgba(0,255,0,0.1);
-      backdrop-filter: blur(5px);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(224, 62, 62, 0.85);
       display: none;
       justify-content: center;
       align-items: center;
@@ -67,212 +177,265 @@
     .modal-overlay.active {
       display: flex;
     }
-
-    /* Modal konteyner */
     .modal {
-      background: #121212;
-      border: 2px solid #00ff00;
-      box-shadow: 0 0 15px #00ff00;
-      padding: 20px 30px;
-      width: 320px;
-      border-radius: 6px;
-      color: #00ff00;
+      background: #1e0e0e;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      color: #fff;
+      box-shadow: 0 0 25px #b53636;
+      font-family: 'Orbitron', sans-serif;
       position: relative;
-      font-size: 16px;
     }
-
     .modal h3 {
       margin-top: 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+      font-size: 24px;
       text-align: center;
+      margin-bottom: 20px;
+      color: #e03e3e;
     }
-
     .modal label {
       display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
+      margin-bottom: 5px;
+      font-weight: 700;
     }
     .modal input {
       width: 100%;
-      padding: 8px;
-      background: #000;
+      padding: 10px;
       border: none;
-      border-bottom: 2px solid #00ff00;
-      color: #00ff00;
-      font-size: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      font-size: 16px;
     }
     .modal input:focus {
       outline: none;
-      border-bottom-color: #66ff66;
+      box-shadow: 0 0 10px #e03e3e;
+      background-color: #330000;
+      color: #fff;
     }
     .modal button {
       width: 100%;
-      padding: 10px;
-      background-color: #00ff00;
+      padding: 12px;
+      background-color: #e03e3e;
       border: none;
-      color: #000;
-      font-weight: bold;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      font-size: 16px;
-      border-radius: 4px;
     }
     .modal button:hover {
-      background-color: #66ff66;
+      background-color: #ff4b4b;
     }
-    /* Modal bağlama düyməsi */
     .modal .close-btn {
       position: absolute;
-      top: 8px;
-      right: 12px;
-      font-weight: bold;
-      font-size: 22px;
-      color: #00ff00;
+      top: 10px;
+      right: 15px;
+      font-size: 26px;
+      font-weight: 700;
       cursor: pointer;
+      color: #e03e3e;
       user-select: none;
     }
     .modal .close-btn:hover {
-      color: #66ff66;
+      color: #ff6b6b;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <button class="auth-btn" id="openSignUp">Qeydiyyatdan Keç</button>
-    <button class="auth-btn" id="openLogIn">Daxil Ol</button>
-  </header>
-
-  <div class="title-container">Special Ravid Kibertəhlükəsizlik Qrupu</div>
-
-  <main>
-    <!-- əsas məzmun burada -->
-  </main>
-
-  <!-- Sign Up Modal -->
-  <div id="signUpModal" class="modal-overlay">
-    <div class="modal">
-      <div class="close-btn" id="closeSignUp">&times;</div>
-      <h3>Qeydiyyatdan Keç</h3>
-      <form id="signupForm">
-        <label for="signupEmail">Email</label>
-        <input type="email" id="signupEmail" required autocomplete="email" />
-        
-        <label for="signupPassword">Şifrə</label>
-        <input type="password" id="signupPassword" required autocomplete="new-password" />
-        
-        <button type="submit">Qeydiyyatdan Keç</button>
-      </form>
-    </div>
+<header>
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook" title="Facebook">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M22,12A10,10 0 1,0 2,12A10,10 0 0,0 22,12M15,12V18H12V12H10V9H12V7.5C12,6.672 12.672,6 13.5,6H15V9H13.5V12H15Z" /></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram" title="Instagram">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M7.75,2H16.25C19.474,2,22,4.526,22,7.75V16.25C22,19.474,19.474,22,16.25,22H7.75C4.526,22,2,19.474,2,16.25V7.75C2,4.526,4.526,2,7.75,2M12,7.44A4.56,4.56 0 0,0 7.44,12A4.56,4.56 0 0,0 12,16.56A4.56,4.56 0 0,0 16.56,12A4.56,4.56 0 0,0 12,7.44M18.5,6.5H17.999L17.75,6.51A0.5,0.5 0 0,0 18,6.75V6.5Z" /></svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter" title="Twitter">
+      <svg style="width:22px;height:22px;fill:#fff;" viewBox="0 0 24 24"><path d="M22,4.01C21.24,4.46 20.42,4.75 19.56,4.92C20.43,4.38 21.09,3.46 21.39,2.33C20.58,2.82 19.7,3.18 18.77,3.39C18.03,2.57 16.95,2 15.75,2C13.44,2 11.56,3.88 11.56,6.19C11.56,6.62 11.6,7.03 11.68,7.43C8.05,7.27 4.85,5.63 2.82,3.2C2.35,3.89 2.07,4.72 2.07,5.62C2.07,7.11 3,8.41 4.41,8.99C3.74,9 3.13,8.8 2.6,8.46V8.52C2.6,10.59 4.12,12.31 6.13,12.71C5.74,12.82 5.32,12.88 4.88,12.88C4.57,12.88 4.27,12.85 3.99,12.79C4.58,14.47 6.1,15.73 7.94,15.77C6.51,16.94 4.72,17.65 2.79,17.65C2.45,17.65 2.12,17.62 1.79,17.56C3.64,18.79 5.82,19.5 8.21,19.5C15.74,19.5 20.48,13.25 20.48,7.22C20.48,7.05 20.48,6.88 20.47,6.71C21.28,6.14 22,5.45 22,4.01Z" /></svg>
+    </a>
   </div>
-
-  <!-- Log In Modal -->
-  <div id="logInModal" class="modal-overlay">
-    <div class="modal">
-      <div class="close-btn" id="closeLogIn">&times;</div>
-      <h3>Daxil Ol</h3>
-      <form id="loginForm">
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" required autocomplete="email" />
-        
-        <label for="loginPassword">Şifrə</label>
-        <input type="password" id="loginPassword" required autocomplete="current-password" />
-        
-        <button type="submit">Daxil Ol</button>
-      </form>
-    </div>
+  <nav>
+    <a href="#" class="nav-link active" data-target="about">Haqqımızda</a>
+    <a href="#" class="nav-link" data-target="services">Xidmətlər</a>
+    <a href="#" class="nav-link" data-target="contact">Əlaqə</a>
+    <a href="#" class="nav-link" data-target="videos">Video</a>
+    <a href="#" class="nav-link" data-target="chat">Chat</a>
+  </nav>
+  <div class="auth-buttons">
+    <button id="openSignUp">Qeydiyyatdan Keç</button>
+    <button id="openLogIn">Daxil Ol</button>
   </div>
+</header>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+<div class="title-container">Special Ravid Kibertəhlükəsizlik Qrupu</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCzXp1qAMiquJxOSgVocoyiYd9RVzyGfx0",
-      authDomain: "riomeet-2580c.firebaseapp.com",
-      projectId: "riomeet-2580c",
-      storageBucket: "riomeet-2580c.firebasestorage.app",
-      messagingSenderId: "423282018929",
-      appId: "1:423282018929:web:0ca497fa11133bf11129d0",
-      measurementId: "G-90CDDV6XCL"
-    };
+<main>
+  <section id="about" class="content-section active">
+    <h2 class="section-title">Haqqımızda</h2>
+    <p> Biz kibertəhlükəsizlik sahəsində peşəkar komandayıq, rəqəmsal aktivləri qorumağı qarşıya məqsəd qoymuşuq. </p>
+    <img class="section-image" src="https://images.unsplash.com/photo-1508387023364-73bf61e7dae0?auto=format&fit=crop&w=900&q=80" alt="Kibertəhlükəsizlik Komandası" />
+  </section>
+  <section id="services" class="content-section">
+    <h2 class="section-title">Xidmətlərimiz</h2>
+    <ul class="services-list">
+      <li>Penetrasiya Testləri və Etik Hacking</li>
+      <li>Şəbəkə Təhlükəsizliyi Analizi</li>
+      <li>Zəiflik Qiymətləndirməsi</li>
+      <li>Təhlükəsizlik Məsləhətçisi</li>
+      <li>Hadisələrə Reaksiya</li>
+    </ul>
+  </section>
+  <section id="contact" class="content-section">
+    <h2 class="section-title">Bizimlə Əlaqə</h2>
+    <p> Sual və təkliflər üçün bizimlə <a href="mailto:contact@specialravid.com" style="color:#e03e3e;">contact@specialravid.com</a> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz. </p>
+  </section>
+  <section id="videos" class="content-section">
+    <h2 class="section-title">Hacker Videoları</h2>
+    <iframe src="https://www.youtube.com/embed/ZtqBQ68cfJc" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/UTBtemGIdwE" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/6vRpLxPSaN0" allowfullscreen></iframe>
+  </section>
+  <section id="chat" class="content-section">
+    <h2 class="section-title">Bizimlə Söhbət</h2>
+    <p>Sağ alt küncdə canlı operator chat pəncərəsini görəcəksiniz.</p>
+  </section>
+</main>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+<!-- Modal SignUp -->
+<div id="signUpModal" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <div class="close-btn" id="closeSignUp">&times;</div>
+    <h3>Qeydiyyatdan Keç</h3>
+    <form id="signupForm">
+      <label for="signupEmail">Email</label>
+      <input type="email" id="signupEmail" required autocomplete="email" />
+      <label for="signupPassword">Şifrə</label>
+      <input type="password" id="signupPassword" required autocomplete="new-password" />
+      <button type="submit">Qeydiyyatdan Keç</button>
+    </form>
+  </div>
+</div>
 
-    // Modal elementləri
-    const signUpModal = document.getElementById('signUpModal');
-    const logInModal = document.getElementById('logInModal');
-    const openSignUpBtn = document.getElementById('openSignUp');
-    const openLogInBtn = document.getElementById('openLogIn');
-    const closeSignUpBtn = document.getElementById('closeSignUp');
-    const closeLogInBtn = document.getElementById('closeLogIn');
+<!-- Modal LogIn -->
+<div id="logInModal" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <div class="close-btn" id="closeLogIn">&times;</div>
+    <h3>Daxil Ol</h3>
+    <form id="loginForm">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required autocomplete="email" />
+      <label for="loginPassword">Şifrə</label>
+      <input type="password" id="loginPassword" required autocomplete="current-password" />
+      <button type="submit">Daxil Ol</button>
+    </form>
+  </div>
+</div>
 
-    // Modal açma-bağlama funksiyaları
-    openSignUpBtn.addEventListener('click', () => {
-      signUpModal.classList.add('active');
-    });
-    openLogInBtn.addEventListener('click', () => {
-      logInModal.classList.add('active');
-    });
-    closeSignUpBtn.addEventListener('click', () => {
-      signUpModal.classList.remove('active');
-    });
-    closeLogInBtn.addEventListener('click', () => {
-      logInModal.classList.remove('active');
-    });
+<script>
+  // Naviqasiyanı idarə et
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.content-section');
 
-    // Formların submit hadisələri
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', (e) => {
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
       e.preventDefault();
-      const email = signupForm.signupEmail.value;
-      const password = signupForm.signupPassword.value;
-
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert('Qeydiyyat uğurludur: ' + userCredential.user.email);
-          signupForm.reset();
-          signUpModal.classList.remove('active');
-        })
-        .catch((error) => {
-          alert('Xəta: ' + error.message);
-        });
+      const target = link.getAttribute('data-target');
+      navLinks.forEach(l => l.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      link.classList.add('active');
+      document.getElementById(target).classList.add('active');
     });
+  });
+</script>
 
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = loginForm.loginEmail.value;
-      const password = loginForm.loginPassword.value;
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert('Uğurla daxil oldunuz: ' + userCredential.user.email);
-          loginForm.reset();
-          logInModal.classList.remove('active');
-        })
-        .catch((error) => {
-          alert('Xəta: ' + error.message);
-        });
-    });
-  </script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCzXp1qAMiquJxOSgVocoyiYd9RVzyGfx0",
+    authDomain: "riomeet-2580c.firebaseapp.com",
+    projectId: "riomeet-2580c",
+    storageBucket: "riomeet-2580c.firebasestorage.app",
+    messagingSenderId: "423282018929",
+    appId: "1:423282018929:web:0ca497fa11133bf11129d0",
+    measurementId: "G-90CDDV6XCL"
+  };
 
-  <!-- Tawk.to chat kodu -->
-  <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/68a6f9ec371fc8192c765662/1j3640hna';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    })();
-  </script>
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Modal elementi seçimi
+  const signUpModal = document.getElementById('signUpModal');
+  const logInModal = document.getElementById('logInModal');
+  const openSignUpBtn = document.getElementById('openSignUp');
+  const openLogInBtn = document.getElementById('openLogIn');
+  const closeSignUpBtn = document.getElementById('closeSignUp');
+  const closeLogInBtn = document.getElementById('closeLogIn');
+
+  // Modal açma / bağlama funksiyaları
+  openSignUpBtn.addEventListener('click', () => {
+    signUpModal.style.display = 'flex';
+  });
+  openLogInBtn.addEventListener('click', () => {
+    logInModal.style.display = 'flex';
+  });
+  closeSignUpBtn.addEventListener('click', () => {
+    signUpModal.style.display = 'none';
+  });
+  closeLogInBtn.addEventListener('click', () => {
+    logInModal.style.display = 'none';
+  });
+
+  // Formların submit edilməsi
+  const signupForm = document.getElementById('signupForm');
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = signupForm.signupEmail.value;
+    const password = signupForm.signupPassword.value;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert('Qeydiyyat uğurludur: ' + userCredential.user.email);
+        signupForm.reset();
+        signUpModal.style.display = 'none';
+      })
+      .catch((error) => {
+        alert('Xəta: ' + error.message);
+      });
+  });
+
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = loginForm.loginEmail.value;
+    const password = loginForm.loginPassword.value;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert('Uğurla daxil oldunuz: ' + userCredential.user.email);
+        loginForm.reset();
+        logInModal.style.display = 'none';
+      })
+      .catch((error) => {
+        alert('Xəta: ' + error.message);
+      });
+  });
+</script>
+
+<!-- Tawk.to Canlı Chat Script -->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68a6f9ec371fc8192c765662/1j3640hna';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
 
 </body>
 </html>
