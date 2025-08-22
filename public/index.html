@@ -441,7 +441,11 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  import {
+    getAuth, setPersistence, createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, onAuthStateChanged, signOut,
+    browserLocalPersistence
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCzXp1qAMiquJxOSgVocoyiYd9RVzyGfx0",
@@ -455,6 +459,11 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+
+  // Sessiya davamlılığını təmin edirik
+  setPersistence(auth, browserLocalPersistence).catch((error) => {
+    console.error("Persistence error:", error);
+  });
 
   // Modal elementləri və düymələri
   const signUpModal = document.getElementById('signUpModal');
@@ -472,7 +481,7 @@
   const sidebarAvatar = document.getElementById('sidebarAvatar');
   const logoutBtnSidebar = document.getElementById('sidebarLogoutBtn');
 
-  // auth və görünürlük bölmələri
+  // auth elementləri
   const authButtonsDiv = document.querySelector('.auth-buttons');
   const authSidebarContainer = document.querySelector('.auth-sidebar-container');
 
@@ -498,7 +507,7 @@
     sidebar.classList.remove('active');
   });
 
-  // Çıxış funksiyası sidebar düyməsində
+  // Logout funksiyası
   logoutBtnSidebar.addEventListener('click', () => {
     signOut(auth)
       .then(() => {
@@ -510,7 +519,7 @@
       });
   });
 
-  // Status izləmə və UI yeniləmə
+  // Sessiya və UI izləmə
   onAuthStateChanged(auth, (user) => {
     if (user) {
       sidebarEmail.textContent = user.email;
@@ -530,35 +539,36 @@
     }
   });
 
-  // Form submit-lar
+  // Qeydiyyat formu submit
   const signupForm = document.getElementById('signupForm');
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = signupForm.signupEmail.value;
     const password = signupForm.signupPassword.value;
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(userCredential => {
         alert('Qeydiyyat uğurludur: ' + userCredential.user.email);
         signupForm.reset();
         signUpModal.style.display = 'none';
       })
-      .catch((error) => {
+      .catch(error => {
         alert('Xəta: ' + error.message);
       });
   });
 
+  // Login formu submit
   const loginForm = document.getElementById('loginForm');
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = loginForm.loginEmail.value;
     const password = loginForm.loginPassword.value;
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(userCredential => {
         alert('Uğurla daxil oldunuz: ' + userCredential.user.email);
         loginForm.reset();
         logInModal.style.display = 'none';
       })
-      .catch((error) => {
+      .catch(error => {
         alert('Xəta: ' + error.message);
       });
   });
