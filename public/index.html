@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -16,62 +15,10 @@
       display: flex; flex-direction: column;
       transition: background-color 0.4s, color 0.4s;
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      background: rgba(0, 0, 0, 0.85);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav {
-      display: flex;
-      gap: 25px;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    nav a.active, nav a:hover {
-      background-color: #e03e3e;
-      color: #fff;
-    }
-    .social-icons {
-      display: flex;
-      gap: 18px;
-      font-size: 22px;
-    }
-    .social-icons a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.4s ease, transform 0.3s ease;
-    }
-    .social-icons a:hover {
-      color: #e03e3e;
-      transform: scale(1.2);
-    }
-    .auth-buttons {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      font-family: 'Orbitron:wght@700;400&family=Roboto&display=swap');
-    body, html {
-      margin: 0; padding: 0; min-height: 100vh;
-      font-family: 'Roboto', sans-serif;
-      background: url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e428440c-af9a-4d89-b881-83badcdf00b1.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      display: flex; flex-direction: column;
-      transition: background-color 0.4s, color 0.4s;
+    body.dark {
+      background-color: #121212;
+      background-image: none;
+      color: #ddd;
     }
     header {
       display: flex;
@@ -136,6 +83,23 @@
     }
     .auth-buttons button:hover {
       background-color: #ff5555;
+    }
+    .auth-sidebar-container {
+      display: none;
+      align-items: center;
+    }
+    #sidebarToggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    #sidebarToggle img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #e03e3e;
+      object-fit: cover;
     }
     .title-container {
       font-family: 'Orbitron', sans-serif;
@@ -221,10 +185,7 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e428440c-af9a-4d89-b881-83badcdf00b1.png') no-repeat center center fixed;
-      background-size: cover;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(224, 62, 62, 0.85);
       display: none;
       justify-content: center;
       align-items: center;
@@ -347,99 +308,6 @@
     .sidebar-logout-btn:hover {
       background-color: #ff4b4b;
     }
-
-    /* Live Chat Styling */
-    #liveChat {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 320px;
-      max-height: 450px;
-      background: #1e1e2f;
-      border-radius: 12px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-      font-family: 'Roboto', sans-serif;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 100000;
-      display: none;
-    }
-    #liveChat header {
-      background: #3f3f67;
-      padding: 12px 20px;
-      color: white;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: inset 0 -1px rgba(255,255,255,0.1);
-      user-select: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #liveChat header button {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      font-weight: 700;
-      padding: 0;
-      line-height: 1;
-    }
-    #chatMessages {
-      flex-grow: 1;
-      padding: 10px 15px;
-      overflow-y: auto;
-      color: #ddd;
-      font-size: 14px;
-      background: #2a2a42;
-    }
-    #chatForm {
-      display: flex;
-      border-top: 1px solid #3f3f67;
-      background: #282838;
-      padding: 10px;
-    }
-    #chatInput {
-      flex-grow: 1;
-      border: none;
-      outline: none;
-      border-radius: 18px;
-      padding: 10px 15px;
-      font-size: 14px;
-      background: #3f3f67;
-      color: white;
-    }
-    #chatForm button {
-      background: #e03e3e;
-      border: none;
-      margin-left: 10px;
-      border-radius: 18px;
-      padding: 10px 15px;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    #chatForm button:hover {
-      background-color: #ff4b4b;
-    }
-    #openChatBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #e03e3e;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 56px;
-      height: 56px;
-      font-size: 28px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(224, 62, 62, 0.7);
-      z-index: 100001;
-    }
   </style>
 </head>
 <body>
@@ -454,7 +322,7 @@
     <a href="#" class="nav-link" data-target="services">Xidmətlər</a>
     <a href="#" class="nav-link" data-target="contact">Əlaqə</a>
     <a href="#" class="nav-link" data-target="videos">Video</a>
-    <a href="#" class="nav-link" data-target="chat" style="display:none;">Chat</a>
+    <a href="#" class="nav-link" data-target="chat">Chat</a>
   </nav>
 
   <div class="auth-buttons">
@@ -462,7 +330,7 @@
     <button id="openLogIn">Daxil Ol</button>
   </div>
 
-  <div class="auth-sidebar-container" style="display:none; align-items:center;">
+  <div class="auth-sidebar-container">
     <button id="sidebarToggle" aria-label="Profil menyusunu aç" title="Profil menyusunu aç" style="display:none;">
       <img id="userAvatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profil" />
     </button>
@@ -496,6 +364,10 @@
     <iframe src="https://www.youtube.com/embed/ZtqBQ68cfJc" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/UTBtemGIdwE" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/6vRpLxPSaN0" allowfullscreen></iframe>
+  </section>
+  <section id="chat" class="content-section">
+    <h2 class="section-title">Bizimlə Söhbət</h2>
+    <p>Sağ alt küncdə canlı operator chat pəncərəsini görəcəksiniz.</p>
   </section>
 </main>
 
@@ -536,21 +408,21 @@
   </div>
 </div>
 
-<!-- Canlı Chat pəncərəsi -->
-<div id="liveChat">
-  <header>
-    <span>Ravid Cyber Security Support</span>
-    <button id="closeChatBtn">×</button>
-  </header>
-  <div id="chatMessages"></div>
-  <form id="chatForm">
-    <input id="chatInput" type="text" placeholder="Mesaj yazın..." autocomplete="off" />
-    <button type="submit">Göndər</button>
-  </form>
-</div>
+<script>
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.content-section');
 
-<!-- Canlı Chat açma düyməsi -->
-<button id="openChatBtn" title="Canlı Chat aç">💬</button>
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('data-target');
+      navLinks.forEach(l => l.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      link.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
@@ -559,9 +431,6 @@
     createUserWithEmailAndPassword, signInWithEmailAndPassword,
     signOut, onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-  import {
-    getDatabase, ref, push, onChildAdded
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCzXp1qAMiquJxOSgVocoyiYd9RVzyGfx0",
@@ -570,16 +439,14 @@
     storageBucket: "riomeet-2580c.appspot.com",
     messagingSenderId: "423282018929",
     appId: "1:423282018929:web:0ca497fa11133bf11129d0",
-    measurementId: "G-90CDDV6XCL",
-    databaseURL: "https://riomeet-2580c-default-rtdb.firebaseio.com"
+    measurementId: "G-90CDDV6XCL"
   };
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const database = getDatabase(app);
 
   setPersistence(auth, browserLocalPersistence).catch(console.error);
 
-  // Modal controls
   const signUpModal = document.getElementById('signUpModal');
   const logInModal = document.getElementById('logInModal');
   const openSignUpBtn = document.getElementById('openSignUp');
@@ -587,23 +454,24 @@
   const closeSignUpBtn = document.getElementById('closeSignUp');
   const closeLogInBtn = document.getElementById('closeLogIn');
 
-  openSignUpBtn.addEventListener('click', () => { signUpModal.style.display = 'flex'; });
-  openLogInBtn.addEventListener('click', () => { logInModal.style.display = 'flex'; });
-  closeSignUpBtn.addEventListener('click', () => { signUpModal.style.display = 'none'; });
-  closeLogInBtn.addEventListener('click', () => { logInModal.style.display = 'none'; });
-
-  // Sidebar and auth container vars
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebarToggle');
   const closeSidebarBtn = document.getElementById('closeSidebar');
   const sidebarEmail = document.getElementById('sidebarEmail');
   const sidebarAvatar = document.getElementById('sidebarAvatar');
   const logoutBtnSidebar = document.getElementById('sidebarLogoutBtn');
+
   const authButtonsDiv = document.querySelector('.auth-buttons');
   const authSidebarContainer = document.querySelector('.auth-sidebar-container');
 
-  if (sidebarToggle) sidebarToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
+  openSignUpBtn.addEventListener('click', () => signUpModal.style.display = 'flex');
+  openLogInBtn.addEventListener('click', () => logInModal.style.display = 'flex');
+  closeSignUpBtn.addEventListener('click', () => signUpModal.style.display = 'none');
+  closeLogInBtn.addEventListener('click', () => logInModal.style.display = 'none');
+
+  sidebarToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
   closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+
   logoutBtnSidebar.addEventListener('click', () => {
     signOut(auth).then(() => {
       alert('Uğurla çıxış etdiniz');
@@ -612,7 +480,6 @@
     }).catch(e => alert('Çıxış xətası: ' + e.message));
   });
 
-  // SignUp form submit
   const signupForm = document.getElementById('signupForm');
   signupForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -626,7 +493,6 @@
       .catch(e => alert('Qeydiyyat xətası: ' + e.message));
   });
 
-  // Login form submit
   const loginForm = document.getElementById('loginForm');
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -640,7 +506,6 @@
       .catch(e => alert('Giriş xətası: ' + e.message));
   });
 
-  // User auth state change listener
   onAuthStateChanged(auth, user => {
     if (user) {
       sidebarEmail.textContent = user.email;
@@ -648,55 +513,11 @@
       document.getElementById('userAvatar').src = sidebarAvatar.src;
       authButtonsDiv.style.display = 'none';
       authSidebarContainer.style.display = 'flex';
-      document.querySelectorAll('.nav-link[data-target="chat"]').forEach(el => el.style.display = 'inline-block');
     } else {
       authButtonsDiv.style.display = 'flex';
       authSidebarContainer.style.display = 'none';
       sidebar.classList.remove('active');
-      document.querySelectorAll('.nav-link[data-target="chat"]').forEach(el => el.style.display = 'none');
     }
-  });
-
-  // Chat implementation
-  const liveChat = document.getElementById('liveChat');
-  const openChatBtn = document.getElementById('openChatBtn');
-  const closeChatBtn = document.getElementById('closeChatBtn');
-  const chatForm = document.getElementById('chatForm');
-  const chatInput = document.getElementById('chatInput');
-  const chatMessages = document.getElementById('chatMessages');
-
-  openChatBtn.addEventListener('click', () => {
-    liveChat.style.display = 'flex';
-    openChatBtn.style.display = 'none';
-  });
-
-  closeChatBtn.addEventListener('click', () => {
-    liveChat.style.display = 'none';
-    openChatBtn.style.display = 'block';
-  });
-
-  chatForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const text = chatInput.value.trim();
-    if (!text) return;
-    const user = auth.currentUser;
-    if (!user) return alert("Chat üçün daxil olun");
-    push(ref(database, 'messages'), {
-      userEmail: user.email,
-      message: text,
-      timestamp: Date.now()
-    });
-    chatInput.value = '';
-  });
-
-  onChildAdded(ref(database, 'messages'), snapshot => {
-    const data = snapshot.val();
-    if(!chatMessages) return;
-    const li = document.createElement('div');
-    const time = new Date(data.timestamp).toLocaleTimeString();
-    li.textContent = `[${time}] ${data.userEmail}: ${data.message}`;
-    chatMessages.appendChild(li);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 </script>
 
@@ -713,4 +534,4 @@
 </script>
 </body>
 </html>
-```
+
